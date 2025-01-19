@@ -1,4 +1,4 @@
-# (Task Tracker)[https://roadmap.sh/projects/task-tracker]
+# [Task Tracker](https://roadmap.sh/projects/task-tracker)
 Task tracker es un proyecto que se utiliza para realizar un seguimiento y administrar sus tareas. En esta tarea, creará una interfaz de línea de comandos (CLI) simple para realizar un seguimiento de lo que necesita hacer, lo que ha hecho y en qué está trabajando actualmente. Este proyecto lo ayudará a practicar sus habilidades de programación, incluido el trabajo con el sistema de archivos, el manejo de entradas de usuario y la creación de una aplicación CLI simple.
 
 ## Requisitos
