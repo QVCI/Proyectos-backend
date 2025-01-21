@@ -1,5 +1,6 @@
 package org.example;
 
+
 public class LectorComandos
 {
     public int Comando(String Comando)
@@ -36,37 +37,52 @@ public class LectorComandos
             {
                 if (Comando.contains("task-cli add"))
                 {
-
+                    return 2;
                 }
                 else
                 {
                     if (Comando.contains("task-cli update"))
                     {
-
+                        return 3;
                     }
                     else
                     {
                         if (Comando.contains("task-cli delete"))
                         {
-
+                            return 4;
                         }
                         else
                         {
                             if (Comando.contains("task-cli mark-in-progress"))
                             {
-
+                                return 5;
                             }
                             else
                             {
                                 if (Comando.contains("task-cli mark-done"))
                                 {
-
+                                    return 6;
                                 }
                                 else
                                 {
                                     if (Comando.contains("task-cli list"))
                                     {
-
+                                        if (Comando.contains("done"))
+                                        {
+                                            return 7;
+                                        }
+                                        else
+                                        {
+                                            if (Comando.contains("in-progress"))
+                                            {
+                                                return 8;
+                                            }
+                                            else
+                                            {
+                                                //retorna todas las listas
+                                                return 9;
+                                            }
+                                        }
                                     }
                                     else
                                     {
@@ -79,12 +95,52 @@ public class LectorComandos
                     }
                 }
 
-                return 1;
+
             }
 
         }
 
 
+
+    }
+
+
+    public String Limpiaorden (String Comando)
+    {
+
+
+        if (Comando.contains("task-cli add"))
+        {
+            Comando.replace("task-cli add", "");
+            Comando.replaceAll("\"", "");
+        }
+        if (Comando.contains("task-cli update"))
+        {
+            Comando.replace("task-cli update", "");
+           // este tiene que hacer algo más
+        }
+        if (Comando.contains("task-cli delete"))
+        {
+            Comando.replace("task-cli delete", "");
+            Comando.trim();
+
+        }
+        if (Comando.contains("task-cli mark-in-progress"))
+        {
+            Comando.replace("task-cli mark-in-progress", "");
+            Comando.trim();
+        }
+        if (Comando.contains("task-cli mark-done"))
+        {
+            Comando.replace("task-cli mark-done", "");
+            Comando.trim();
+        }
+        if (Comando.contains("task-cli list"))
+        {
+
+        }
+        System.out.println(Comando);
+        return Comando;
 
     }
 }
