@@ -1,14 +1,16 @@
 package org.example;
 
+import org.json.JSONException;
+
 import java.util.Scanner;
 
 public class Main
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws JSONException {
 
         int opcion = 1;
         Scanner SC = new Scanner(System.in);
+        String Comando = null;
 
         System.out.println("Hola bienvenido a Task Tracker");
         while(opcion != 0)
@@ -16,12 +18,21 @@ public class Main
 
 
             LectorComandos lectorComandos = new LectorComandos();
-
-            opcion = lectorComandos.Comando(SC.nextLine());
-            switch (opcion)
-            {
+            Comando = SC.nextLine();
+            opcion = lectorComandos.Comando(Comando);
+            TratoJson tratoJson = new TratoJson();
+            switch (opcion) {
                 case 2:
                     //añadir
+                    if (!lectorComandos.Limpiaorden(Comando).trim().isEmpty())
+                    {
+                        tratoJson.AñadeTarea(lectorComandos.Limpiaorden(Comando));
+
+                    }
+                    else
+                    {
+                        System.out.println("Las tareas deben tener un nombre");
+                    }
                     break;
 
                 case 3:

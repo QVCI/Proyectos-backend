@@ -19,7 +19,7 @@ public class LectorComandos
                 System.out.println("task-cli help: Despliega la lista de comandos");
                 System.out.println("");
                 System.out.println("Comandos de Uso:");
-                System.out.println("task-cli add \"Nombre de tarea\": Despliega la lista de comandos");
+                System.out.println("task-cli add \"Nombre de tarea\": Añade una tarea");
                 System.out.println("task-cli update ID \"Nombre de tarea\": Actualiza la tarea");
                 System.out.println("task-cli delete ID: Elimina la tarea");
                 System.out.println("task-cli mark-in-progress ID: Marcar como tarea en proceso");
@@ -109,10 +109,12 @@ public class LectorComandos
     {
 
 
+
         if (Comando.contains("task-cli add"))
         {
-            Comando.replace("task-cli add", "");
-            Comando.replaceAll("\"", "");
+
+            Comando = Comando.replace("task-cli add", "");
+            Comando = Comando.replaceAll("\"", "");
         }
         if (Comando.contains("task-cli update"))
         {
@@ -122,25 +124,25 @@ public class LectorComandos
         if (Comando.contains("task-cli delete"))
         {
             Comando.replace("task-cli delete", "");
-            Comando.trim();
+
 
         }
         if (Comando.contains("task-cli mark-in-progress"))
         {
             Comando.replace("task-cli mark-in-progress", "");
-            Comando.trim();
+
         }
         if (Comando.contains("task-cli mark-done"))
         {
             Comando.replace("task-cli mark-done", "");
-            Comando.trim();
+
         }
         if (Comando.contains("task-cli list"))
         {
 
         }
-        System.out.println(Comando);
-        return Comando;
+
+        return Comando.trim();
 
     }
 }
