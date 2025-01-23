@@ -1,12 +1,7 @@
 [
     {
         "Nombre": "hola",
-        "ID Tarea": 3,
-        "Completada": false
-    },
-    {
-        "Nombre": "hola",
         "ID Tarea": 1,
-        "Completada": false
+        "Completada": true
     }
 ]

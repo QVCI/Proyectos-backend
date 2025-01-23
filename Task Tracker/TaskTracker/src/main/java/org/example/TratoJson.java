@@ -66,7 +66,7 @@ public class TratoJson {
 
 
     // Marcar completada
-    private static void CompletarTarea(int NumeroTarea) throws JSONException {
+    public void CambiarEstadoTarea(int NumeroTarea, boolean estado) throws JSONException {
         JSONArray tareas = LeeTareas();
         if (NumeroTarea < 1 || NumeroTarea > tareas.length()) {
             System.out.println("Número de tarea inválido.");
@@ -74,9 +74,31 @@ public class TratoJson {
         }
 
         JSONObject tarea = tareas.getJSONObject(NumeroTarea - 1);
-        tarea.put("Completada", true);
-        guardaTareas(tareas);
-        System.out.println("Tarea completada: " + tarea.getString("Nombre"));
+        if (tarea.getBoolean("Completada") != estado)
+        {
+            tarea.put("Completada", estado);
+            guardaTareas(tareas);
+            if (estado)
+            {
+                System.out.println("Tarea "+ tarea.getString("Nombre") +", marcada como completada");
+            }
+            else
+            {
+                System.out.println("Tarea "+ tarea.getString("Nombre") +", marcada en progreso");
+            }
+        }
+        else
+        {
+            if (estado)
+            {
+                System.out.println("La Tarea " + tarea.getString("Nombre") + ", ya ha sido marcada como completada");
+            }
+            else
+            {
+                System.out.println("La Tarea " + tarea.getString("Nombre") + ", ya ha sido marcada como en proceso");
+            }
+        }
+
     }
 
     // actualizar Tarea
@@ -88,19 +110,9 @@ public class TratoJson {
             System.out.println("Número de tarea inválido.");
             return;
         }
-
-
+        JSONObject tarea = tareas.getJSONObject(NumeroTarea - 1);
         String nombreTarea = tareas.getJSONObject(NumeroTarea - 1).getString("Nombre");
-        boolean EstadoTarea = tareas.getJSONObject(NumeroTarea - 1).getBoolean("Completada");
-        tareas.remove(NumeroTarea - 1);
-
-
-        JSONObject nuevaTarea = new JSONObject();
-        nuevaTarea.put("ID Tarea", NumeroTarea);
-        nuevaTarea.put("Nombre", NuevoNombre);
-        nuevaTarea.put("Completada", EstadoTarea);
-
-        tareas.put(nuevaTarea);
+        tarea.put("Nombre", NuevoNombre);
         guardaTareas(tareas);
 
         System.out.println("Nombre de Tarea actualizado:");
@@ -109,7 +121,7 @@ public class TratoJson {
     }
 
     // Elimina Tarea
-    private static void EliminarTarea(int NumeroTarea) throws JSONException
+    public void EliminarTarea(int NumeroTarea) throws JSONException
     {
         JSONArray tareas = LeeTareas();
         if (NumeroTarea < 1 || NumeroTarea > tareas.length())

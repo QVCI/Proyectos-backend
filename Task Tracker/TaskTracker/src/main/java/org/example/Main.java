@@ -2,6 +2,7 @@ package org.example;
 
 import org.json.JSONException;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main
@@ -85,14 +86,39 @@ public class Main
 
                 case 4:
                     //borrar
+                    try
+                    {
+                        int numerotarea = Integer.parseInt(lectorComandos.Limpiaorden(Comando));
+                        tratoJson.EliminarTarea(numerotarea);
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        System.out.println("El ID debe componerse solo de números.");
+                    }
                     break;
 
                 case 5:
                     //marcar en progreso
+                    try
+                    {
+                        tratoJson.CambiarEstadoTarea(Integer.parseInt(lectorComandos.Limpiaorden(Comando)), false);
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        System.out.println("El ID debe componerse solo de números." + e);
+                    }
                     break;
 
                 case 6:
                     //marcar finalizado
+                    try
+                    {
+                        tratoJson.CambiarEstadoTarea(Integer.parseInt(lectorComandos.Limpiaorden(Comando)), true);
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        System.out.println("El ID debe componerse solo de números.");
+                    }
                     break;
 
                 case 7:

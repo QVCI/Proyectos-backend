@@ -124,18 +124,20 @@ public class LectorComandos
         }
         if (Comando.contains("task-cli delete"))
         {
-            Comando.replace("task-cli delete", "");
+            Comando = Comando.replace("task-cli delete", "");
 
 
         }
         if (Comando.contains("task-cli mark-in-progress"))
         {
-            Comando.replace("task-cli mark-in-progress", "");
+
+            Comando = Comando.replace("task-cli mark-in-progress", "");
+
 
         }
         if (Comando.contains("task-cli mark-done"))
         {
-            Comando.replace("task-cli mark-done", "");
+            Comando = Comando.replace("task-cli mark-done", "");
 
         }
         if (Comando.contains("task-cli list"))
