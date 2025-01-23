@@ -35,9 +35,53 @@ public class Main
                     }
                     break;
 
+                // Actualizar tarea
                 case 3:
-                    //actualizar
+
+                    String comando = lectorComandos.Limpiaorden(Comando);
+                    if (comando == null || comando.isEmpty()) {
+                        System.out.println("El comando no puede estar vacío.");
+                        break;
+                    }
+
+
+                    String[] partes = comando.split(" ", 2);
+                    if (partes.length < 2)
+                    {
+                        System.out.println("task-cli help: Despliega la lista de comandos");
+                        break;
+                    }
+
+                    String numtarea = partes[0].trim();
+                    String nombretarea = partes[1].trim();
+
+                    try
+                    {
+                        int numerotarea = Integer.parseInt(numtarea);
+
+                        if (nombretarea.isEmpty())
+                        {
+                            System.out.println("El nombre de la tarea no puede estar vacío.");
+                        }
+                        else
+                        {
+                            tratoJson.ActualizarTarea(numerotarea, nombretarea);
+                        }
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        System.out.println("El ID debe componerse solo de números.");
+                    }
+                    catch (JSONException e)
+                    {
+                        System.out.println("Error procesando JSON: " + e.getMessage());
+                    }
+                    catch (Exception e)
+                    {
+                        System.out.println("Ocurrió un error inesperado: " + e);
+                    }
                     break;
+
 
                 case 4:
                     //borrar

@@ -118,8 +118,9 @@ public class LectorComandos
         }
         if (Comando.contains("task-cli update"))
         {
-            Comando.replace("task-cli update", "");
-           // este tiene que hacer algo más
+            Comando = Comando.replace("task-cli update", "");
+            Comando = Comando.replaceAll("\"", "");
+
         }
         if (Comando.contains("task-cli delete"))
         {
@@ -141,6 +142,7 @@ public class LectorComandos
         {
 
         }
+
 
         return Comando.trim();
 

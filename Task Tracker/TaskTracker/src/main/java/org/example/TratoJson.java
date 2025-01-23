@@ -79,6 +79,35 @@ public class TratoJson {
         System.out.println("Tarea completada: " + tarea.getString("Nombre"));
     }
 
+    // actualizar Tarea
+    public void ActualizarTarea(int NumeroTarea, String NuevoNombre) throws JSONException
+    {
+        JSONArray tareas = LeeTareas();
+        if (NumeroTarea < 1 || NumeroTarea > tareas.length())
+        {
+            System.out.println("Número de tarea inválido.");
+            return;
+        }
+
+
+        String nombreTarea = tareas.getJSONObject(NumeroTarea - 1).getString("Nombre");
+        boolean EstadoTarea = tareas.getJSONObject(NumeroTarea - 1).getBoolean("Completada");
+        tareas.remove(NumeroTarea - 1);
+
+
+        JSONObject nuevaTarea = new JSONObject();
+        nuevaTarea.put("ID Tarea", NumeroTarea);
+        nuevaTarea.put("Nombre", NuevoNombre);
+        nuevaTarea.put("Completada", EstadoTarea);
+
+        tareas.put(nuevaTarea);
+        guardaTareas(tareas);
+
+        System.out.println("Nombre de Tarea actualizado:");
+        System.out.println("Anterior: " + nombreTarea);
+        System.out.println("Nuevo: " + NuevoNombre);
+    }
+
     // Elimina Tarea
     private static void EliminarTarea(int NumeroTarea) throws JSONException
     {
