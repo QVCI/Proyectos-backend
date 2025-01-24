@@ -33,7 +33,7 @@ public class TratoJson {
     }
 
     // Enseña tareas
-    private static void ListaTareas(boolean filtrar, String TipoFiltro) throws JSONException
+    public void ListaTareas(boolean filtrar, String TipoFiltro) throws JSONException
     {
         JSONArray tareas = LeeTareas();
         if (tareas.length() == 0)
@@ -47,7 +47,7 @@ public class TratoJson {
                 if (!filtrar)
                 {
                     JSONObject tarea = tareas.getJSONObject(i);
-                    String status = tarea.getBoolean("Completada") ? "[Completada]" : "[Pendiente]";
+                    String status = tarea.getBoolean("Completada") ? "[taw]" : "[Pendiente]";
                     System.out.println((i + 1) + ". " + status + " " + tarea.getString("Nombre"));
                 }
                 else

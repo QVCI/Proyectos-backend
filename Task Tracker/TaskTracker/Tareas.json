@@ -3,5 +3,10 @@
         "Nombre": "hola",
         "ID Tarea": 1,
         "Completada": true
+    },
+    {
+        "Nombre": "adios",
+        "ID Tarea": 2,
+        "Completada": false
     }
 ]

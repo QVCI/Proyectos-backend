@@ -140,11 +140,6 @@ public class LectorComandos
             Comando = Comando.replace("task-cli mark-done", "");
 
         }
-        if (Comando.contains("task-cli list"))
-        {
-
-        }
-
 
         return Comando.trim();
 

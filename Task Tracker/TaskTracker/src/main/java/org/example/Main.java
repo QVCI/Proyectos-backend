@@ -123,14 +123,17 @@ public class Main
 
                 case 7:
                     //enseña tareas hechas
+                    tratoJson.ListaTareas(true, "[Completada]");
                     break;
 
                 case 8:
                     //enseña tareas en proceso
+                    tratoJson.ListaTareas(true, "[Pendiente]");
                     break;
 
                 case 9:
                     //enseña todas las tareas
+                    tratoJson.ListaTareas(false, null);
                     break;
             }
 
