@@ -48,12 +48,16 @@ public class Json
         }
         else
         {
-            System.out.printf("%-20s %-10s %0s", "# ID  Date       Description  Amount");
+            System.out.printf("%-20s %0s %10s %20s", "# ID",  "Date", "Description",  "Amount");
             for (int i = 0; i < tareas.length(); i++)
             {
                 JSONObject tarea = tareas.getJSONObject(i);
-                String status = tarea.getBoolean("Completada") ? "[Completada]" : "[Pendiente]";
+                String id = tarea.getString("ID Gasto");
+                String Fecha = tarea.getString("Fecha");
+                String Descripcion = tarea.getString("Descripcion");
+                String Costo = tarea.getString("Costo");
 
+                System.out.printf("%-20s %0s %10s %20s", id,  Fecha, Descripcion,  Costo);
 
 
             }
