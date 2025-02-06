@@ -30,29 +30,61 @@ public class LectorSistema
         }
         if (Parte1.equals("list"))
         {
-            if(Parte2 == null || Parte3 == null || Parte4 == null)
+            if( Parte3 != null || Parte4 != null)
             {
                 System.out.println("Comando no valido");
                 return false;
+            }
+            Json json = new Json();
+            try
+            {
+                json.ListaGastos();
+            }
+            catch (JSONException e)
+            {
+                throw new RuntimeException(e);
             }
 
             return true;
         }
         if (Parte1.equals("summary"))
         {
-            if( Parte3 != null || Parte4 != null)
+            if(Parte4 != null)
             {
                 System.out.println("Comando no valido");
                 return false;
+            }
+            Json json = new Json();
+
+            try
+            {
+                System.out.println("# Costo Total: $" + String.valueOf(json.CostoTotal(Parte3)));
+            }
+            catch (JSONException e)
+            {
+                throw new RuntimeException(e);
             }
             return true;
         }
         if (Parte1.equals("delete"))
         {
-            if( Parte3 == null || Parte4 == null)
+            if( Parte3 == null || Parte4 != null)
             {
                 System.out.println("Comando no valido");
                 return false;
+            }
+            Json json = new Json();
+            try
+            {
+                json.EliminaGato(Integer.parseInt(Parte3));
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("El ID de gasto, debe ser un número");
+            }
+            catch (JSONException e)
+            {
+                throw new RuntimeException(e);
             }
             return true;
         }
@@ -76,15 +108,6 @@ public class LectorSistema
             json.AñadeGasto(Parte3.trim(), costo);
         }
     }
-    public void Lista() throws JSONException {
-        Json json = new Json();
-        try
-        {
-            json.ListaGastos();
-        }
-        catch (JSONException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
+
+
 }

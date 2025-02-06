@@ -6,13 +6,14 @@ public class Main
 {
     public static void main(String[] args)
     {
+        System.out.println("Bienvenido a Expense Tracker");
         do
         {
-            System.out.println("Bienvenido a Expense Tracker");
-
             String Comando = "";
+
             Scanner SC = new Scanner(System.in);
             Comando = SC.nextLine();
+
             if (!Comando.contains("expense-tracker"))
             {
                 System.out.println("Comando no reconocido");
@@ -47,11 +48,9 @@ public class Main
                         Parte4 = Partes[3] + Partes[4];
                         break;
                 }
-                System.out.println("Parte 1: " + Parte1);
-                System.out.println("Parte 2: " + Parte2);
-                System.out.println("Parte 3: " + Parte3);
-                System.out.println("Parte 4: " + Parte4);
+
                 LectorSistema lectorSistema = new LectorSistema();
+
                 if (!lectorSistema.ClasificadorOperacion(Parte1, Parte2,Parte3,Parte4))
                 {
 

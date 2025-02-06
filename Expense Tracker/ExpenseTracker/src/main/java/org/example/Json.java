@@ -48,7 +48,7 @@ public class Json
         }
         else
         {
-            System.out.printf("%-20s %0s %10s %20s", "# ID",  "Date", "Description",  "Amount");
+            System.out.printf("%-20s %-16s %10s %20s\n", "# ID",  "Date", "Description",  "Amount");
             for (int i = 0; i < tareas.length(); i++)
             {
                 JSONObject tarea = tareas.getJSONObject(i);
@@ -57,80 +57,56 @@ public class Json
                 String Descripcion = tarea.getString("Descripcion");
                 String Costo = tarea.getString("Costo");
 
-                System.out.printf("%-20s %0s %10s %20s", id,  Fecha, Descripcion,  Costo);
+                System.out.printf("%-20s %-16s %10s %20s\n", id,  Fecha, Descripcion,  Costo);
 
 
             }
         }
     }
-
-
-    // Marcar completada
-    public void CambiarEstadoTarea(int NumeroTarea, boolean estado) throws JSONException {
-        JSONArray tareas = LeerGastos();
-        if (NumeroTarea < 1 || NumeroTarea > tareas.length()) {
-            System.out.println("Número de tarea inválido.");
-            return;
-        }
-
-        JSONObject tarea = tareas.getJSONObject(NumeroTarea - 1);
-        if (tarea.getBoolean("Completada") != estado)
-        {
-            tarea.put("Completada", estado);
-            guardaGastos(tareas);
-            if (estado)
-            {
-                System.out.println("Tarea "+ tarea.getString("Nombre") +", marcada como completada");
-            }
-            else
-            {
-                System.out.println("Tarea "+ tarea.getString("Nombre") +", marcada en progreso");
-            }
-        }
-        else
-        {
-            if (estado)
-            {
-                System.out.println("La Tarea " + tarea.getString("Nombre") + ", ya ha sido marcada como completada");
-            }
-            else
-            {
-                System.out.println("La Tarea " + tarea.getString("Nombre") + ", ya ha sido marcada como en proceso");
-            }
-        }
-
-    }
-
-    // actualizar Tarea
-    public void ActualizarTarea(int NumeroTarea, String NuevoNombre) throws JSONException
+    public float CostoTotal(String Mes) throws JSONException
     {
+        float total = 0;
         JSONArray tareas = LeerGastos();
-        if (NumeroTarea < 1 || NumeroTarea > tareas.length())
+        for (int i= 0; i < tareas.length(); ++i)
         {
-            System.out.println("Número de tarea inválido.");
-            return;
-        }
-        JSONObject tarea = tareas.getJSONObject(NumeroTarea - 1);
-        String nombreTarea = tareas.getJSONObject(NumeroTarea - 1).getString("Nombre");
-        tarea.put("Nombre", NuevoNombre);
-        guardaGastos(tareas);
+            JSONObject tarea = tareas.getJSONObject(i);
+            if (Mes == null)
+            {
 
-        System.out.println("Nombre de Tarea actualizado:");
-        System.out.println("Anterior: " + nombreTarea);
-        System.out.println("Nuevo: " + NuevoNombre);
+                total = total + Float.parseFloat(tarea.getString("Costo"));
+            }
+            else
+            {
+                String [] Partes = tarea.getString("Fecha").split("-");
+                if (Partes[1].equals(Mes))
+                {
+                    total = total + Float.parseFloat(tarea.getString("Costo"));
+                }
+
+            }
+
+        }
+
+        return total;
+
     }
+
+
+
+
+
 
     // Elimina Tarea
-    public void EliminarTarea(int NumeroTarea) throws JSONException
+    public void EliminaGato(int NumeroTarea) throws JSONException
     {
         JSONArray tareas = LeerGastos();
         if (NumeroTarea < 1 || NumeroTarea > tareas.length())
         {
-            System.out.println("Número de tarea inválido.");
+            System.out.println("Número de gasto inválido.");
             return;
         }
 
-        String nombreTarea = tareas.getJSONObject(NumeroTarea - 1).getString("Nombre");
+        String nombreTarea = tareas.getJSONObject(NumeroTarea - 1).getString("Descripcion");
         tareas.remove(NumeroTarea - 1);
         guardaGastos(tareas);
         System.out.println("Tarea eliminada: " + nombreTarea);
